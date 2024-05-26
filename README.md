@@ -3,7 +3,15 @@
 ## Installation
 
 1. **Install Neovim**
-2. **Clone Configuration Repository**:
+2. **Install Nodejs**:
+    ```sh
+    wget https://nodejs.org/dist/v20.13.1/node-v20.13.1-linux-x64.tar.xz
+    ```
+    In .bashrc:
+    ```sh
+    export PATH=$HOME/node-v20.13.1-linux-x64/bin:$PATH
+    ```
+3. **Clone Configuration Repository**:
     ```sh
     git clone https://github.com/kasaderos/nvimconf.git ~/.config/nvim
     sudo apt-get install ripgrep
