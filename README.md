@@ -2,18 +2,33 @@
 
 ## Installation
 
-1. **Install Neovim**
-2. **Install Nodejs**:
+1. **Install Neovim** (v0.10.0):
     ```sh
-    wget https://nodejs.org/dist/v20.13.1/node-v20.13.1-linux-x64.tar.xz
+    wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+    tar -xf nvim-linux64.tar.gz -C /opt/
     ```
     In .bashrc:
     ```sh
-    export PATH=$HOME/node-v20.13.1-linux-x64/bin:$PATH
+    export PATH=$PATH:/opt/nvim-linux64/bin
     ```
+
+2. **Install Nodejs** (v20.13.1):
+    ```sh
+    wget https://nodejs.org/dist/v20.13.1/node-v20.13.1-linux-x64.tar.xz
+    tar -xf nvim-linux64.tar.gz -C /opt/
+    ```
+    In .bashrc:
+    ```sh
+    export PATH=$PATH:/opt/node-v20.13.1-linux-x64/bin
+    ```
+
 3. **Clone Configuration Repository**:
     ```sh
     git clone https://github.com/kasaderos/nvimconf.git ~/.config/nvim
+    ```
+
+4. **Install ripgrep**:
+    ```sh
     sudo apt-get install ripgrep
     ```
 
