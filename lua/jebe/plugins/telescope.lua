@@ -28,5 +28,8 @@ return {
 		vim.keymap.set('n', '<leader>gg', function()
 			builtin.grep_string({ search = vim.fn.input("Grep > ") })
 		end)
+        -- list functions/methods
+		vim.keymap.set('n', '<leader>lf', function()
+            builtin.lsp_document_symbols({ symbols={'function', 'method'} })	end)
 	end
 }
