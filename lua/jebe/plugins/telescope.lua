@@ -8,7 +8,19 @@ return {
 	},
 
 	config = function()
-		require('telescope').setup({})
+		require('telescope').setup({
+            pickers = {
+                lsp_document_symbols = {
+                    layout_strategy = "horizontal", -- Use horizontal for more width
+                    layout_config = {
+                        width = 0.85,  -- 85% of the screen width
+                        height = 0.7,  -- Adjust height if needed
+                        preview_width = 0.5,  -- Increase preview area
+                    },
+                    symbol_width = 40,
+                },
+            },
+        })
 
 		local builtin = require('telescope.builtin')
 		vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
@@ -30,6 +42,6 @@ return {
 		end)
         -- list functions/methods
 		vim.keymap.set('n', '<leader>lf', function()
-            builtin.lsp_document_symbols({ symbols={'function', 'method'} })	end)
+            builtin.lsp_document_symbols({ symbols={'function', 'method'} })	end, { desc = "open list of functions"})
 	end
 }
