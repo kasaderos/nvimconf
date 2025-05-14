@@ -1,6 +1,5 @@
 return {
 	"nvim-telescope/telescope.nvim",
-
 	tag = "0.1.5",
 
 	dependencies = {
@@ -23,25 +22,39 @@ return {
         })
 
 		local builtin = require('telescope.builtin')
-		vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-		vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-		-- help
-		vim.keymap.set('n', '<leader>th', builtin.help_tags, {})
-		vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+
+		-- Find files
+		vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Find files" })
+
+		-- Live grep (search in files)
+		vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Live grep (search in files)" })
+
+		-- Search help tags
+		vim.keymap.set('n', '<leader>th', builtin.help_tags, { desc = "Search help tags" })
+
+		-- Find Git files
+		vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = "Find Git files" })
+
+		-- Search for the current word in the project
 		vim.keymap.set('n', '<leader>tws', function()
 			local word = vim.fn.expand("<cword>")
 			builtin.grep_string({ search = word })
-		end)
+		end, { desc = "Search for the current word in project" })
+
+		-- Search for the current whole WORD in the project
 		vim.keymap.set('n', '<leader>tss', function()
 			local word = vim.fn.expand("<cWORD>")
 			builtin.grep_string({ search = word })
-		end)
-		-- grep
+		end, { desc = "Search for the current whole WORD in project" })
+
+		-- Manual grep input
 		vim.keymap.set('n', '<leader>gg', function()
 			builtin.grep_string({ search = vim.fn.input("Grep > ") })
-		end)
-        -- list functions/methods
+		end, { desc = "Search project manually (Grep prompt)" })
+
+		-- List functions/methods in the current document
 		vim.keymap.set('n', '<leader>lf', function()
-            builtin.lsp_document_symbols({ symbols={'function', 'method'} })	end, { desc = "open list of functions"})
+            builtin.lsp_document_symbols({ symbols = { 'function', 'method' } })
+		end, { desc = "List functions and methods in document" })
 	end
 }
