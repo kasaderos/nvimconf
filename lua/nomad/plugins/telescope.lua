@@ -6,8 +6,8 @@ return {
 		"nvim-lua/plenary.nvim"
 	},
 
-	config = function()
-		require('telescope').setup({
+    config = function()
+        require('telescope').setup({
             pickers = {
                 lsp_document_symbols = {
                     layout_strategy = "horizontal", -- Use horizontal for more width

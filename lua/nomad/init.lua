@@ -1,7 +1,7 @@
-require('jebe.keymaps')
-require('jebe.autocmds')
-require('jebe.opts')
-require('jebe.setup_plugins')
+require('nomad.keymaps')
+require('nomad.autocmds')
+require('nomad.opts')
+require('nomad.setup_plugins')
 
 local augroup = vim.api.nvim_create_augroup
 local autoCmdGroup = augroup('DefaultAutoCmdGroup', {})
@@ -12,6 +12,14 @@ autocmd("BufWritePre", {
     group = autoCmdGroup,
     pattern = "*",
     command = [[%s/\s\+$//e]],
+})
+
+autocmd("VimEnter", {
+  callback = function()
+    if vim.fn.argc() == 0 then
+      vim.cmd("Explore")
+    end
+  end,
 })
 
 -- Auto-organize imports and format Go files before saving

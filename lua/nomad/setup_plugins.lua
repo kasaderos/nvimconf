@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- setup executes config on each plugin in plugins/
 require("lazy").setup({
-    spec = "jebe.plugins",
+    spec = "nomad.plugins",
     change_detection = { notify = false }
 })
 
