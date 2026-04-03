@@ -35,3 +35,6 @@ vim.keymap.set('n', '<leader>re', ':Rex<CR>')  -- Return to Explorer
 -- While your cursor is in the Right window, use these to flip through files:
 vim.keymap.set('n', '<Tab>', ':bnext<CR>', { desc = 'Next File' })
 vim.keymap.set('n', '<S-Tab>', ':bprev<CR>', { desc = 'Previous File' })
+
+-- Save all and quit
+vim.keymap.set("n", "<leader>qq", ":wa<CR>:qa<CR>", { desc = "Save all and Quit" })

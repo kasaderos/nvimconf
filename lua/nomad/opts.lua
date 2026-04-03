@@ -35,3 +35,7 @@ vim.opt.splitbelow = true  -- Horizontal splits appear below (optional, but reco
 
 -- Set the width of the explorer (if using :Vex)
 vim.g.netrw_winsize = 70
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+vim.opt.termguicolors = true

@@ -4,23 +4,22 @@ return {
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
       require("bufferline").setup({
-        options = {
-          mode = "buffers", -- use "tabs" if you prefer actual vim tabs
-          separator_style = "slant", -- options: "slant" | "slope" | "thick" | "thin"
-          always_show_bufferline = true,
-          show_buffer_close_icons = true,
-          show_close_icon = true,
-          color_icons = true,
-          -- This ensures the bufferline shrinks when an explorer is open
-          offsets = {
-            {
-              filetype = "NvimTree",
-              text = "File Explorer",
-              text_align = "left",
-              separator = true,
-            },
-          },
+      options = {
+        offsets = {
+          {
+            filetype = "NvimTree",
+            text = "File Explorer", -- Title
+            text_align = "left",    -- Align text to the left
+            separator = true        -- Separator
+          }
         },
-      })
+        -- style = "slant", ["slope", ..]
+        separator_style = "slant",
+      }
+    })
+
+    -- Use <leader>q to pick a buffer to close
+    vim.keymap.set("n", "<leader>q", "<cmd>BufferLinePickClose<CR>", { desc = "Pick buffer to close" })
+    vim.keymap.set("n", "<leader>w", "<cmd>bdelete<CR>", { desc = "Close current buffer" })
     end,
 }

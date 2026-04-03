@@ -14,10 +14,12 @@ autocmd("BufWritePre", {
     command = [[%s/\s\+$//e]],
 })
 
-autocmd("VimEnter", {
+vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
+    -- Если Neovim запущен без аргументов (просто пустой вызов)
     if vim.fn.argc() == 0 then
-      vim.cmd("Explore")
+      -- Открываем nvim-tree
+      require("nvim-tree.api").tree.open()
     end
   end,
 })

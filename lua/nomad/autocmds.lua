@@ -45,23 +45,3 @@ autocmd('LspAttach', {
 	end
 })
 
--- vim.api.nvim_create_autocmd("filetype", {
---   pattern = "netrw",
---   callback = function()
---     -- Define a function to handle creating and opening in a tab
---     local function create_in_tab()
---       local filename = vim.fn.input("Create new file: ")
---       if filename ~= "" then
---         -- 1. Create/Save the file
---         vim.cmd("silent !touch " .. filename)
---         -- 2. Refresh the explorer so you can see it
---         vim.cmd("edit .")
---         -- 3. Open that specific file in a new tab
---         vim.cmd("tabedit " .. filename)
---       end
---     end
---
---     -- Map it to '%' (or any key you prefer) ONLY inside netrw buffers
---     vim.keymap.set("n", "%", create_in_tab, { buffer = true, desc = "Create file and open in tab" })
---   end
--- })
