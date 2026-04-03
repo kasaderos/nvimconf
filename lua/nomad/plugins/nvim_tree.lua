@@ -19,6 +19,12 @@ return {
             filters = {
                 dotfiles = false,
             },
+            git = {
+                enable = true,
+                ignore = false, -- show gitignored files
+                show_on_dirs = true,
+                show_on_open_dirs = true,
+            },
         })
 
         -- toggle open/close
