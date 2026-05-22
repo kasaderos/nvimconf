@@ -50,5 +50,8 @@ return {
                 col = 1
             },
         })
+
+        -- Toggle Git Blame line
+        vim.keymap.set("n", "<leader>gb", "<cmd>Gitsigns toggle_current_line_blame<CR>", { desc = "Toggle Git Blame line" })
     end,
 }

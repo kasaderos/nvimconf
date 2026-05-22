@@ -31,53 +31,29 @@ return {
                 "gopls",
                 "pyright",
                 "clangd",
+                "ts_ls",       -- TypeScript / JavaScript
+                "intelephense", -- PHP
             },
-            handlers = {
-                function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
-                end,
+            automatic_enable = true,
+        })
 
-                ["lua_ls"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.lua_ls.setup {
-                        capabilities = capabilities,
-                        settings = {
-                            Lua = {
-                                runtime = { version = "Lua 5.1" },
-                                diagnostics = {
-                                    globals = { "vim", "it", "describe", "before_each", "after_each" },
-                                }
-                            }
-                        }
-                    }
-                end,
+        -- Shared capabilities for all servers (mason-lspconfig v2 auto-enables servers)
+        vim.lsp.config("*", { capabilities = capabilities })
 
-                -- manually in lsp
-                --["gopls"] = function()
-                --    local lspconfig = require('lspconfig')
-                --    local util = require 'lspconfig/util'
-                --    lspconfig.gopls.setup({
-                --        capabilities = capabilities,
-                --        cmd = { "gopls" },
-                --        filetypes = { "go", "gomod" },
-                --        root_dir = util.root_pattern('go.work', 'go.mod', '.git'),
-                --        settings = {
-                --            gopls = {
-                --                completeUnimported = true,
-                --                usePlaceholders = true,
-                --                analyses = {
-                --                    unusedparams = true,
-                --                },
-                --                staticcheck = true,
-                --                -- Enable auto-format
-                --                gofumpt = true,
-                --            },
-                --        }
-                --    })
-                --end
-            }
+        vim.lsp.config("lua_ls", {
+            settings = {
+                Lua = {
+                    runtime = { version = "LuaJIT" },
+                    diagnostics = {
+                        globals = { "vim", "it", "describe", "before_each", "after_each" },
+                    },
+                    workspace = {
+                        library = vim.api.nvim_get_runtime_file("", true),
+                        checkThirdParty = false,
+                    },
+                    telemetry = { enable = false },
+                },
+            },
         })
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -108,7 +84,7 @@ return {
                 focusable = false,
                 style = "minimal",
                 border = "rounded",
-                source = "always",
+                source = true,
                 header = "",
                 prefix = "",
             },

@@ -29,8 +29,11 @@ autocmd("BufWritePre", {
     group = autoCmdGroup,
     pattern = "*.go",
     callback = function()
-        local params = vim.lsp.util.make_range_params()
-        params.context = { only = { "source.organizeImports" } }
+        local clients = vim.lsp.get_clients({ bufnr = 0 })
+        local enc = (clients[1] or {}).offset_encoding or "utf-16"
+        local params = vim.lsp.util.make_range_params(0, enc)
+        ---@diagnostic disable-next-line: inject-field
+        params.context = { only = { "source.organizeImports" }, diagnostics = {} }
 
         -- Request LSP to organize imports
         local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
@@ -81,9 +84,9 @@ autocmd("LspAttach", {
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, { desc = "Show signature help", buffer = e.buf })
 
         -- Jump to next diagnostic
-        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, { desc = "Jump to next diagnostic", buffer = e.buf })
+        vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = 1, float = true }) end, { desc = "Jump to next diagnostic", buffer = e.buf })
 
         -- Jump to previous diagnostic
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, { desc = "Jump to previous diagnostic", buffer = e.buf })
+        vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = -1, float = true }) end, { desc = "Jump to previous diagnostic", buffer = e.buf })
     end
 })

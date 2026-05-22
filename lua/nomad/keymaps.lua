@@ -1,3 +1,4 @@
+-- <leader> - space
 vim.g.mapleader = " "
 
 -- Explorer
@@ -37,4 +38,9 @@ vim.keymap.set('n', '<Tab>', ':bnext<CR>', { desc = 'Next File' })
 vim.keymap.set('n', '<S-Tab>', ':bprev<CR>', { desc = 'Previous File' })
 
 -- Save all and quit
-vim.keymap.set("n", "<leader>qq", ":wa<CR>:qa<CR>", { desc = "Save all and Quit" })
+vim.keymap.set("n", "<leader>aq", ":wa<CR>:qa<CR>", { desc = "Save all and Quit" })
+
+-- Show LSP diagnostic warnings
+vim.keymap.set("n", "<leader>w", function()
+	vim.diagnostic.setloclist({ severity = vim.diagnostic.severity.WARN })
+end, { desc = "Show diagnostic warnings in location list" })
