@@ -33,6 +33,11 @@ return {
         vim.keymap.set("n", "<C-n>", function() harpoon:list():select(2) end, { desc = "Jump to 2rd Harpoon tab" })
         vim.keymap.set("n", "<C-s>", function() harpoon:list():select(3) end, { desc = "Jump to 3th Harpoon tab" })
         --vim.keymap.set("n", "<C-t>", function() harpoon:list():select(2) end, { desc = "Jump to 2nd Harpoon tab" })
+        --
+        -- Keymaps with descriptions
+        vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Add current buffer to Harpoon list" })
+        vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+        vim.keymap.set("n", "<leader>hr", function() harpoon:list():remove() end, { desc = "Clear all Harpoon marks" })
 
         -- Toggle previous & next buffers stored within Harpoon list
         vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end, { desc = "Go to previous Harpoon buffer" })
